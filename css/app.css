@@ -16,19 +16,7 @@
     font-family: 'Chivo', sans-serif;
     font-size: 100%;
 }
-::before, ::after{
-    position: absolute;
-    content: '';
-}
-body::after{
-    width: 100%;
-    min-height: 100vh;
-    /* background-color: red; */
-    background-image: url(../assets/desktop/bg-pattern-dots.svg),  url(../assets/desktop/logo.svg), url(../assets/desktop/image-host.jpg);
-    background-repeat: no-repeat;
-    background-position: right bottom 10%, left 20% top 10%, right center;
-    z-index: -1;
-}
+
 body{
     position: relative;
     width:100%;
@@ -36,7 +24,26 @@ body{
     padding-bottom: 130px;
     background-color: var(--background-navy-blue-color);
 } 
+body::before{
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    content: '';
+    background-image: url(../assets/desktop/bg-pattern-dots.svg), url(../assets/desktop/image-host.jpg);
+    background-repeat: no-repeat;
+    background-position: right bottom 10%, right center;
+}
+body::after{
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    content: '';
+    background-image:  url(../assets/desktop/logo.svg);
+    background-repeat: no-repeat;
+    background-position: left 20% top 10%;
+}
 main{
+    z-index: 1;
     position: absolute;
     top:50%;
     left:10%;
@@ -117,10 +124,17 @@ button {
     opacity: 1;
     margin: 0;
 }
+.hidden{
+    opacity: 0;
+}
 @media (max-width: 1250px){
     body::after{
-        background-image: url(../assets/desktop/bg-pattern-dots.svg),  url(../assets/desktop/logo.svg), url(../assets/tablet/image-host.jpg);
-        background-position: left 5% bottom, left 40px top 50px, right top;
+        background-size: 200px;
+        background-position:  left 40px top 50px;
+    }
+    body::before{
+        background-image: url(../assets/desktop/bg-pattern-dots.svg), url(../assets/tablet/image-host.jpg);
+        background-position: left 5% bottom, right top;
     }
     main{
         left: 0;
@@ -131,17 +145,22 @@ button {
 }
 @media (max-width: 800px){
     body::after{
-        background-image:  url(../assets/desktop/logo.svg), url(../assets/mobile/image-host.jpg);
-        background-position: center top, top center;
-        background-size: auto, cover;
+        background-position: center top 10%;
+        opacity: 1;
+    }
+    body::before{
+        background-image: url(../assets/mobile/image-host.jpg);
+        background-position: top center;
+        background-size: cover;
         backface-visibility: hidden;
-        opacity: 0.25;
+        opacity: 0.1;
     }
     main{
         width: 100%;
         max-width: 100%;
         padding: 0;
         background-color: transparent;
+        bottom:0;
     }
     main h1{
         text-align: center;
@@ -154,7 +173,11 @@ button {
     }
     .img-contianer{
         order: 2;
-        gap:20px;
+        gap:10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        opacity: 0.8;
+        margin-top: 30px;
     }
     form{
         order:3;
