@@ -16,13 +16,24 @@
     font-family: 'Chivo', sans-serif;
     font-size: 100%;
 }
-body{
-    width:100%;
+::before, ::after{
+    position: absolute;
+    content: '';
+}
+body::after{
+    width: 100%;
     min-height: 100vh;
-    padding-bottom: 130px;
+    /* background-color: red; */
     background-image: url(../assets/desktop/bg-pattern-dots.svg),  url(../assets/desktop/logo.svg), url(../assets/desktop/image-host.jpg);
     background-repeat: no-repeat;
     background-position: right bottom 10%, left 20% top 10%, right center;
+    z-index: -1;
+}
+body{
+    position: relative;
+    width:100%;
+    min-height: 100vh;
+    padding-bottom: 130px;
     background-color: var(--background-navy-blue-color);
 } 
 main{
@@ -33,6 +44,10 @@ main{
     max-width: fit-content;
     padding: 90px 60px 0 0;
     background-color: var(--background-navy-blue-color);
+}
+.container{
+    display: flex;
+    flex-direction: column;
 }
 main h1{
     font-size: 5.2em;
@@ -90,11 +105,58 @@ button {
     font-weight: 400;
 }
 .img-contianer{
-    width: fit-content;
-    margin-top: 64px;
+    margin-top: 42px;
     display: flex;
     gap: 40px;
 }
 .img-contianer img{
     object-fit: contain;
+}
+.oops{
+    color: #FB3E3E;
+    opacity: 1;
+    margin: 0;
+}
+@media (max-width: 1250px){
+    body::after{
+        background-image: url(../assets/desktop/bg-pattern-dots.svg),  url(../assets/desktop/logo.svg), url(../assets/tablet/image-host.jpg);
+        background-position: left 5% bottom, left 40px top 50px, right top;
+    }
+    main{
+        left: 0;
+    }
+    main h1{
+        font-size: 48px;
+    }
+}
+@media (max-width: 800px){
+    body::after{
+        background-image:  url(../assets/desktop/logo.svg), url(../assets/mobile/image-host.jpg);
+        background-position: center top, top center;
+        background-size: auto, cover;
+        backface-visibility: hidden;
+        opacity: 0.25;
+    }
+    main{
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        background-color: transparent;
+    }
+    main h1{
+        text-align: center;
+    }
+    main p{
+        text-align: center;
+    }
+    .container{
+        align-items: center;
+    }
+    .img-contianer{
+        order: 2;
+        gap:20px;
+    }`
+    form{
+        order:3;
+    }
 }
