@@ -123,6 +123,7 @@ button:hover{
     object-fit: contain;
 }
 .oops{
+    height: 30px;
     color: #FB3E3E;
     opacity: 1;
     margin: 0;
